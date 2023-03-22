@@ -21,15 +21,6 @@ provision:
     # Output: following environment variable will be persisted in current environment's .env file.
     # TEAMS_APP_ID: the id of Teams app
 
-  - uses: script # Set TAB_DOMAIN for local launch
-    name: Set TAB_DOMAIN for local launch
-    with:
-      run: echo "::set-output TAB_DOMAIN=localhost:53000"
-  - uses: script # Set TAB_ENDPOINT for local launch
-    name: Set TAB_ENDPOINT for local launch
-    with:
-      run: echo "::set-output TAB_ENDPOINT=https://localhost:53000"
-
   - uses: aadApp/update # Apply the AAD manifest to an existing AAD app. Will use the object id in manifest file to determine which AAD app to update.
     with:
       manifestPath: ./aad.manifest.json # Relative path to this file. Environment variables in manifest will be replaced before apply to AAD app
@@ -75,3 +66,4 @@ deploy:
         SSL_KEY_FILE: ${{SSL_KEY_FILE}}
         REACT_APP_CLIENT_ID: ${{AAD_APP_CLIENT_ID}}
         REACT_APP_START_LOGIN_PAGE_URL: ${{TAB_ENDPOINT}}/auth-start.html
+        WDS_SOCKET_PORT: 0
