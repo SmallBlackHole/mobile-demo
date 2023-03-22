@@ -5,13 +5,26 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Start Teams App Locally for Mobile",
+            "dependsOn": [
+                "Validate prerequisites",
+                "Start local tunnel",
+                "Provision",
+                "Deploy",
+                "Start application",
+                "Install application for mobile"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
             "label": "Start Teams App Locally",
             "dependsOn": [
                 "Validate prerequisites",
                 "Start local tunnel",
                 "Provision",
                 "Deploy",
-                "Start application"
+                "Start application",
+
             ],
             "dependsOrder": "sequence"
         },
@@ -147,6 +160,14 @@
             "problemMatcher": "$tsc-watch",
             "presentation": {
                 "reveal": "silent"
+            }
+        },
+        {
+            "label": "Install application for mobile",
+            "type": "teamsfx",
+            "command": "mobile-preview",
+            "args": {
+                "manifest": "${workspaceFolder}/build/appPackage/manifest.local.json"
             }
         }
     ]

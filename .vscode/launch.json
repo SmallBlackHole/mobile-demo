@@ -62,6 +62,18 @@
                 "hidden": true
             },
             "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": "Debug (Mobile)",
+            "type": "pwa-node",
+            "request": "attach",
+            "port": 9239,
+            "restart": true,
+            "presentation": {
+                "group": "all"
+            },
+            "preLaunchTask": "Start Teams App Locally for Mobile",
+            "internalConsoleOptions": "neverOpen"
         }
     ],
     "compounds": [
