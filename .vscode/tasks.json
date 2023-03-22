@@ -15,6 +15,18 @@
             "dependsOrder": "sequence"
         },
         {
+            "label": "Start Teams App Locally for Mobile",
+            "dependsOn": [
+                "Validate prerequisites",
+                "Start local tunnel",
+                "Provision for mobile",
+                "Deploy",
+                "Start application",
+                "Install application for mobile"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
             // Check all required prerequisites.
             // See https://aka.ms/teamsfx-tasks/check-prerequisites to know the details and how to customize the args.
             "label": "Validate prerequisites",
@@ -32,6 +44,33 @@
             }
         },
         {
+            // Start the local tunnel service to forward public URL to local port and inspect traffic.
+            // See https://aka.ms/teamsfx-tasks/local-tunnel for the detailed args definitions.
+            "label": "Start local tunnel",
+            "type": "teamsfx",
+            "command": "debug-start-local-tunnel",
+            "args": {
+                "type": "dev-tunnel",
+                "ports": {
+                    "tab": {
+                        "portNumber": 53000,
+                        "protocol": "https",
+                        "access": "private"
+                    }
+                },
+                "env": "local",
+                "output": {
+                    "tab": {
+                        "endpoint": "TAB_ENDPOINT", 
+                        "domain": "TAB_DOMAIN"
+                    },
+                    "id": "DEV_TUNNEL_ID"
+                }
+            },
+            "isBackground": true,
+            "problemMatcher": "$teamsfx-local-tunnel-watch"
+        },
+        {
             // Create the debug resources.
             // See https://aka.ms/teamsfx-tasks/provision to know the details and how to customize the args.
             "label": "Provision",
@@ -39,6 +78,21 @@
             "command": "provision",
             "args": {
                 "env": "local"
+            }
+        },
+        {
+            // Create the debug resources.
+            // See https://aka.ms/teamsfx-tasks/provision to know the details and how to customize the args.
+            "label": "Provision for mobile",
+            "type": "teamsfx",
+            "command": "provision",
+            "args": {
+                "env": "local"
+            },
+            "options": {
+                "env": {
+                    "ENABLE_MOBILE": "true"
+                }
             }
         },
         {
@@ -77,6 +131,14 @@
                     "beginsPattern": ".*",
                     "endsPattern": "Compiled|Failed|compiled|failed"
                 }
+            }
+        },
+        {
+            "label": "Install application for mobile",
+            "type": "teamsfx",
+            "command": "mobile-preview",
+            "args": {
+                "manifest": "${workspaceFolder}/build/appPackage/manifest.local.json"
             }
         }
     ]

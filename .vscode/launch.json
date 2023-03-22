@@ -44,6 +44,17 @@
                 "hidden": true
             },
             "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": "Preview (Mobile)",
+            "type": "node",
+            "request": "launch",
+            "preLaunchTask": "Start Teams App Locally for Mobile",
+            "internalConsoleOptions": "neverOpen",
+            "presentation": {
+                "group": "all",
+                "order": 3
+            }
         }
     ],
     "compounds": [
