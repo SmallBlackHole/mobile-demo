@@ -12,7 +12,7 @@
                 "Provision",
                 "Deploy",
                 "Start application",
-                "Install application for mobile"
+                "Show guideline for mobile preview"
             ],
             "dependsOrder": "sequence"
         },
@@ -163,7 +163,7 @@
             }
         },
         {
-            "label": "Install application for mobile",
+            "label": "Show guideline for mobile preview",
             "type": "teamsfx",
             "command": "mobile-preview",
             "args": {
