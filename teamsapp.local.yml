@@ -24,13 +24,13 @@ provision:
   - uses: script
     with:
      run: |
-      if [ $ENABLE_MOBILE != 'true' ]; then
-        domain="localhost:53000";
-        endpoint="https://localhost:53000/";
+      if ($Env:ENABLE_MOBILE -ne 'true' ){
+        $domain="localhost:53000";
+        $endpoint="https://localhost:53000/";
         echo "::set-output TAB_DOMAIN=${domain}";
         echo "::set-output TAB_ENDPOINT=${endpoint}";
-      fi
-     shell: bash
+      }
+     shell: powershell
 
   - uses: aadApp/update # Apply the AAD manifest to an existing AAD app. Will use the object id in manifest file to determine which AAD app to update.
     with:
