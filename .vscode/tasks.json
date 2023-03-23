@@ -22,7 +22,7 @@
                 "Provision for mobile",
                 "Deploy",
                 "Start application",
-                "Install application for mobile"
+                "Show guideline for mobile preview"
             ],
             "dependsOrder": "sequence"
         },
@@ -53,9 +53,14 @@
                 "type": "dev-tunnel",
                 "ports": {
                     "tab": {
+                        "portNumber": 3978,
+                        "protocol": "https",
+                        "access": "public"
+                    },
+                    "bot": {
                         "portNumber": 53000,
                         "protocol": "https",
-                        "access": "private"
+                        "access": "public"
                     }
                 },
                 "env": "local",
@@ -134,7 +139,7 @@
             }
         },
         {
-            "label": "Install application for mobile",
+            "label": "Show guideline for mobile preview",
             "type": "teamsfx",
             "command": "mobile-preview",
             "args": {
