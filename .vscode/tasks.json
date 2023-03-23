@@ -53,14 +53,9 @@
                 "type": "dev-tunnel",
                 "ports": {
                     "tab": {
-                        "portNumber": 3978,
-                        "protocol": "https",
-                        "access": "public"
-                    },
-                    "bot": {
                         "portNumber": 53000,
                         "protocol": "https",
-                        "access": "public"
+                        "access": "private"
                     }
                 },
                 "env": "local",
