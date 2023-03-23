@@ -24,7 +24,7 @@ provision:
   - uses: script
     with:
      run: |
-      if [ $ENABLE_MOBILE != 'true' ]; then
+      if [[ $ENABLE_MOBILE != 'true' ]]; then
         domain="localhost:53000";
         endpoint="https://localhost:53000/";
         echo "::set-output TAB_DOMAIN=${domain}";
